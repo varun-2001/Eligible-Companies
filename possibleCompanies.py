@@ -1,6 +1,5 @@
 import regex
 import openpyxl as xl
-# import os
 
 class Company:
     def __init__(self, id, type, companyName, eligibility,branches, jobProfile):
@@ -35,32 +34,24 @@ for i in data:
 companies.remove(companies[0])
 companies.sort(key=lambda x: x.companyName)
 
-cgpa=float(7.28)
-branch="CC"
-
-# cgpa = float(input("Enter your CGPA:"))
-# branch = input("Enter Branch:")
+cgpa = float(input("Enter your CGPA:"))
+branch = input("Enter Branch:")
 print("File written to {}_{}.txt".format(branch,cgpa))
-# os.sleep(10)
 
 with open('{}_{}.txt'.format(branch,cgpa),'w') as f:
     for i in companies:
         if (cgpa>= float(i.cgpa) and (branch in i.branches or i.branches[0]=='All Branches')):
-            f.write("ID:"+str(i.id))
+            f.write("Company: "+str(i.companyName))
             f.write("\n")
-            f.write("Offer Type:"+str(i.type))
+            f.write("Offer Type: "+str(i.type))
             f.write("\n")
-            f.write("Company Name:"+str(i.companyName))
+            f.write("Eligibility: "+str(i.eligibility))
             f.write("\n")
-            f.write("Eligibility:"+str(i.eligibility))
+            f.write("Job Profile: "+str(i.jobProfile))
             f.write("\n")
-            f.write("Job Profile:"+str(i.jobProfile))
-            f.write("\n")
-            f.write("-----------------------------------------------------------------------------------------------------------------------------------")
+            f.write("------------------------------------------------------------------")
             f.write("\n")
 
 f.close()
 
 input("Press Enter to exit")
-
-
